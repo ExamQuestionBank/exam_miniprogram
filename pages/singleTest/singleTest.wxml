@@ -1,0 +1,35 @@
+<!--logs.wxml-->
+<view class="container question">
+  <view class="search">
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" shape="round" />
+  </view>
+  <view class="scroll">
+    <scroll-view
+      scroll-y="true"
+      bindscrolltoupper="upper"
+      bindscrolltolower="lower"
+      bindscroll="scroll"
+      style="height: 500px">
+        <view  wx:for="{{ singleTests }}" wx:key="{{item.id}}" class="scroll-view-item">
+          <view class="year">{{item.testYear}}</view>
+          <view class="content">
+            <view class="title">
+              <view class="subject"># {{item.subject}} #</view>
+              <view class="test-from">
+                <view class="test-from-img">
+                  <image
+                    style="width:20px;height:20px"
+                    src="../../static/icon/school.png"
+                  />
+                </view>
+                <view class="test-from-text">
+                  {{item.testFrom}}
+                </view>
+              </view>
+            </view>
+            <view class="question">{{item.question}}</view>
+          </view>
+        </view>
+    </scroll-view>
+  </view>
+</view>

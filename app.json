@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/questionBank/questionBank",
+    "pages/mine/mine",
+    "pages/singleTest/singleTest",
+    ".gitgronr"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "C8B68D",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/icon/home.png",
+        "selectedIconPath": "./static/icon/home-ativ.png"
+      },
+      {
+        "pagePath": "pages/questionBank/questionBank",
+        "text": "题库",
+        "iconPath": "./static/icon/test.png",
+        "selectedIconPath": "./static/icon/test-ativ.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "./static/icon/my.png",
+        "selectedIconPath": "./static/icon/my-ativ.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-search": "@vant/weapp/search/index"
+  }
+}
