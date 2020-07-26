@@ -1,0 +1,41 @@
+<!--components/singleTestAnswerBoard/singleTestAnswerBoard.wxml-->
+<view class="answer-board">
+  <view class="conetnt">
+    <view class="question">
+      {{currentSingleTest.question}}
+    </view>
+    <view class="answer">
+      <van-radio-group value="{{ radio }}" bind:change="onChange">
+        <van-radio
+          name="A"
+          custom-class="radio"
+          label-class="radio-label"
+          checked-color="#CCBE97">
+          A:{{currentSingleTest.answerA}}
+        </van-radio>
+        <van-radio
+          name="B"
+          custom-class="radio"
+          label-class="radio-label"
+          checked-color="#CCBE97">
+          B:{{currentSingleTest.answerB}}
+        </van-radio>
+        <van-radio
+          name="C"
+          custom-class="radio"
+          label-class="radio-label"
+          checked-color="#CCBE97">
+          C:{{currentSingleTest.answerC}}
+        </van-radio>
+        <van-radio
+          name="D"
+          custom-class="radio"
+          label-class="radio-label"
+          checked-color="#CCBE97">
+          D:{{currentSingleTest.answerD}}
+        </van-radio>
+      </van-radio-group>
+    </view>
+  </view>
+  <slot></slot>
+</view>

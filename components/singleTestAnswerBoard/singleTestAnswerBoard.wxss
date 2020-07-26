@@ -1,0 +1,24 @@
+/* components/singleTestAnswerBoard/singleTestAnswerBoard.wxss */
+.answer-board{
+  height: 100%;
+  padding: 20px;
+}
+
+.conetnt{
+  margin-top: 20px;
+}
+
+.question{
+  font-size: 16px;
+  color: #101010;
+}
+
+.answer{
+  margin-top: 30px;
+}
+
+.radio{
+  margin: 10px 0;
+  height: 30px;
+  font-size: 14px;
+}

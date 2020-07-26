@@ -2,9 +2,10 @@ import { getSingleTests} from '../../service/singleTest.js'
 Page({
   data: {
     text: "This is page data.",
-    singleTests:[
-      1,3,4
-    ],
+    singleTests:[],
+    showPopup:false,
+    currentSingleTest:{},
+    currentIndex:'',
   },
   onLoad: function (options) {
     // 页面创建时执行
@@ -52,5 +53,36 @@ Page({
         singleTests: res.data
       })
     }
+  },
+  showSingleTest(e) {
+    console.log(e)
+    let {item,index} = e.currentTarget.dataset
+    this.setData({
+      currentSingleTest:item,
+      currentIndex:index,
+    })
+    console.log(item)
+    this.setData({ showPopup: true });
+  },
+
+  onClose() {
+    this.setData({ showPopup: false });
+  },
+
+  prve () {
+    let currentIndex = this.data.currentIndex === 0 ? 0 : this.data.currentIndex - 1
+    this.setData({
+      currentSingleTest: this.data.singleTests[currentIndex],
+      currentIndex: currentIndex
+    })
+  },
+
+  next () {
+    let currentIndex = this.data.currentIndex === this.data.singleTests.length - 1 ?
+                        this.data.singleTests.length - 1 : this.data.currentIndex + 1
+    this.setData({
+      currentSingleTest: this.data.singleTests[currentIndex],
+      currentIndex: currentIndex
+    })
   }
 })

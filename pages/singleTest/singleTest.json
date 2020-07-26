@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "单选题",
-  "usingComponents": {}
+  "usingComponents": {
+    "single-test-answer-board":"/components/singleTestAnswerBoard/singleTestAnswerBoard"
+  }
 }
