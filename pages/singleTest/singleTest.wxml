@@ -49,7 +49,9 @@
       close-icon="close"
     >
       <single-test-answer-board
-        currentSingleTest="{{currentSingleTest}}">
+        currentSingleTest="{{currentSingleTest}}"
+        bind:checkAnwser="onCheckAnwser"
+      >
         <view class="slot">
           <view class="action-icon left" bindtap="prve">
             <image

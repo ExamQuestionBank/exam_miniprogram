@@ -13,6 +13,7 @@ function loginCallBack (res) {
   if (res && res.status === 'ok') {
     try {
       wx.setStorageSync('access_token', res.data.access_token)
+      wx.setStorageSync('user', res.data.user)
     } catch (e) {
       console.log(e)
      }

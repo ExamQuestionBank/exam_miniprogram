@@ -64,6 +64,11 @@
   margin-left: 5px;
 }
 
+.popup{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .question{
   font-size: 12px;
   overflow: hidden;

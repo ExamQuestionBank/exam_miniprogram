@@ -18,13 +18,14 @@
   </view>
   <view class="content-item">
     <van-grid gutter="{{ 10 }}" column-num="3">
-      <van-grid-item wx:for="{{ contentItems }}" icon="{{item.icon}}" text="{{item.text}}"/>
+      <van-grid-item wx:for="{{ contentItems }}" wx:key="*this" icon="{{item.icon}}" text="{{item.text}}"/>
     </van-grid>
   </view>
   <view class="test-item">
     <van-grid direction="horizontal" column-num="3">
       <van-grid-item
         wx:for="{{ testItems }}"
+        wx:key="*this"
         icon="{{item.icon}}"
         text="{{item.text}}"
         bindtap="goPage"

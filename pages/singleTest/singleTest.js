@@ -1,4 +1,6 @@
-import { getSingleTests} from '../../service/singleTest.js'
+import { getSingleTests,
+         userSingleTestsSaveOrUpdate
+        } from '../../service/singleTest.js'
 Page({
   data: {
     text: "This is page data.",
@@ -6,6 +8,8 @@ Page({
     showPopup:false,
     currentSingleTest:{},
     currentIndex:'',
+    changeAnswerFlag: false,
+    answer: '',
   },
   onLoad: function (options) {
     // 页面创建时执行
@@ -58,7 +62,10 @@ Page({
     console.log(e)
     let {item,index} = e.currentTarget.dataset
     this.setData({
-      currentSingleTest:item,
+      currentSingleTest:{
+        ...item,
+        currentIndex: index
+      },
       currentIndex:index,
     })
     console.log(item)
@@ -68,20 +75,62 @@ Page({
   onClose() {
     this.setData({ showPopup: false });
   },
+  onCheckAnwser (data) {
+    console.log(data)
+    let { changeRadioflg, radio } = data.detail
+    this.setData({
+      changeAnswerFlag: changeRadioflg,
+      answer: radio
+    })
+  },
+  saveOrUpdateAnwser (type) {
+    let params = {
+      userId: wx.getStorageSync('user').id,
+      testId: this.data.currentSingleTest.id,
+      answer:this.data.answer,
+    }
+    if (type === 'next') {
+      userSingleTestsSaveOrUpdate(params,this.setNextData)
+    } else {
+      userSingleTestsSaveOrUpdate(params, this.setPrveData)
+    }
+  },
 
   prve () {
+    if (this.data.answer) {
+      this.saveOrUpdateAnwser('prve')
+    } else {
+      this.setPrveData()
+    }
+  },
+
+  setPrveData () {
     let currentIndex = this.data.currentIndex === 0 ? 0 : this.data.currentIndex - 1
     this.setData({
-      currentSingleTest: this.data.singleTests[currentIndex],
+      currentSingleTest: {
+        ...this.data.singleTests[currentIndex],
+        currentIndex: currentIndex
+      },
       currentIndex: currentIndex
     })
   },
 
   next () {
+    if (this.data.answer) {
+      this.saveOrUpdateAnwser('next')      
+    } else {
+      this.setNextData()
+    }
+  },
+
+  setNextData () {
     let currentIndex = this.data.currentIndex === this.data.singleTests.length - 1 ?
-                        this.data.singleTests.length - 1 : this.data.currentIndex + 1
+      this.data.singleTests.length - 1 : this.data.currentIndex + 1
     this.setData({
-      currentSingleTest: this.data.singleTests[currentIndex],
+      currentSingleTest: {
+        ...this.data.singleTests[currentIndex],
+        currentIndex: currentIndex
+      },
       currentIndex: currentIndex
     })
   }

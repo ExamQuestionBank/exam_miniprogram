@@ -2,7 +2,7 @@
 <view class="answer-board">
   <view class="conetnt">
     <view class="question">
-      {{currentSingleTest.question}}
+      {{currentSingleTest.currentIndex + 1}}.{{currentSingleTest.question}}
     </view>
     <view class="answer">
       <van-radio-group value="{{ radio }}" bind:change="onChange">
