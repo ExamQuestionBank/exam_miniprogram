@@ -1,4 +1,7 @@
 <!--logs.wxml-->
 <view class="container question">
-  questionBank
+  <van-empty description="工程师正在加班完成该功能🐶" />
+  <van-button round color="#C8B68D" class="bottom-button">
+    程序员挺幸苦的，给个鼓励吧😭
+  </van-button>
 </view>

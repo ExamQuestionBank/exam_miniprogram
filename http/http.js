@@ -1,4 +1,7 @@
-let baseUrl = 'http://127.0.0.1:7001/';
+let baseUrl = 'http://47.104.100.102:7001/';
+// let baseUrl = 'http://127.0.0.1:7001/';
+// let baseUrl = 'http://www.taotaoxu.cn:7001/'
+
 
 function geHeader() {
   const header = {

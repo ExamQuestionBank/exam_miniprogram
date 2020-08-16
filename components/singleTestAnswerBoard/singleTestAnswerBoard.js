@@ -20,13 +20,20 @@ Component({
     testItem:{},
     radio:'',
     changeRadioflg: false,
-    currentUserSingleTest: ''
+    currentUserSingleTest: '',
+    practiced: false,
   },
 
   // 监听properties变化
   observers: {
     'currentSingleTest':function (newVal) {
       this.initData(newVal)
+    },
+    'practiced': function (newVal) {
+      console.log(newVal)
+      this.setData({
+        thisPracticed:newVal
+      })
     }
   },
 
@@ -62,8 +69,8 @@ Component({
       getUserSingleTest(prams, function (data) {
         if (data.length > 0) {
           _this.setData({
-            setCurrentUserSingleTest:data[0],
-            radio: data[0].answer
+            radio: data[0].answer,
+            practiced: true
           });
         }
       })

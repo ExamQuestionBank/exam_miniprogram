@@ -11,30 +11,46 @@
           custom-class="radio"
           label-class="radio-label"
           checked-color="#CCBE97">
-          A:{{currentSingleTest.answerA}}
+          <view class="{{radio == 'A' ? 'selected' : ''}}">
+            A:{{currentSingleTest.answerA}}
+          </view>
         </van-radio>
         <van-radio
           name="B"
           custom-class="radio"
           label-class="radio-label"
           checked-color="#CCBE97">
-          B:{{currentSingleTest.answerB}}
+          <view class="{{radio == 'B' ? 'selected' : ''}}">
+            B:{{currentSingleTest.answerB}}
+          </view>
         </van-radio>
         <van-radio
           name="C"
           custom-class="radio"
           label-class="radio-label"
           checked-color="#CCBE97">
-          C:{{currentSingleTest.answerC}}
+          <view class="{{radio == 'C' ? 'selected' : ''}}">
+            C:{{currentSingleTest.answerC}}
+          </view>
         </van-radio>
         <van-radio
           name="D"
           custom-class="radio"
           label-class="radio-label"
           checked-color="#CCBE97">
-          D:{{currentSingleTest.answerD}}
+          <view class="{{radio == 'D' ? 'selected' : ''}}">
+            D:{{currentSingleTest.answerD}}
+          </view>
         </van-radio>
       </van-radio-group>
+    </view>
+    <view wx:if="{{practiced === true && currentSingleTest.answerAnalysis}}" class="answe-analysis">
+      <view class="answe-analysis-title">
+        解析
+      </view>
+      <scroll-view scroll-y="true" class="answe-analysis-content">
+        {{currentSingleTest.answerAnalysis}}
+      </scroll-view>
     </view>
   </view>
   <slot></slot>

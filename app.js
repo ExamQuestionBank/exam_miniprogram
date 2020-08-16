@@ -1,5 +1,6 @@
 //app.js
 import login from './service/login.js'
+import {wechatLogin} from './service/wechat.js'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -10,6 +11,7 @@ App({
     // 登录
     wx.login({
       success: res => {
+        wechatLogin({code:res.code})
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -20,6 +22,7 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
+              console.log(res)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
 
@@ -28,7 +31,6 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
-              login()
             }
           })
         }

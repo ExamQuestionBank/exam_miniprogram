@@ -1,7 +1,7 @@
 import { post } from '../http/http.js'
 
 function getSingleTests (data,cb) {
-  post('api/singleTests/getSingleTests', data, cb)
+  post('api/userSingleTests/getUserFinishedTest', data, cb)
 }
 
 function userSingleTestsSaveOrUpdate (data,cb) {

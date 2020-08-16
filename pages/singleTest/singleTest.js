@@ -10,6 +10,10 @@ Page({
     currentIndex:'',
     changeAnswerFlag: false,
     answer: '',
+    active:0,
+    loading:false,
+    tabIndex:0,
+    needUpdate: false,
   },
   onLoad: function (options) {
     // 页面创建时执行
@@ -42,16 +46,30 @@ Page({
   onResize: function () {
     // 页面尺寸变化时执行
   },
-  getSingleTests: function () {
+  onChangeTab: function (data) {
+    this.setData({
+      tabIndex: data.detail.index
+    })
+    if (data.detail.index === 0){
+      this.getSingleTests(true)
+    } else {
+      this.getSingleTests(false)
+    }
+  },
+  getSingleTests: function (todo=true) {
+    this.setData({loading:true})
     const params = {
       current: 1,
       filter: {},
       pageSize: 20,
+      userId: wx.getStorageSync('user').id,
+      todo,
     }
     getSingleTests({params},this.dealSingleTestData)
+    this.setData({needUpdate:false})
   },
   dealSingleTestData: function (res) {
-    console.log(res)
+    this.setData({ loading: false })
     if (res.success) {
       this.setData({
         singleTests: res.data
@@ -59,7 +77,6 @@ Page({
     }
   },
   showSingleTest(e) {
-    console.log(e)
     let {item,index} = e.currentTarget.dataset
     this.setData({
       currentSingleTest:{
@@ -68,15 +85,21 @@ Page({
       },
       currentIndex:index,
     })
-    console.log(item)
     this.setData({ showPopup: true });
   },
 
   onClose() {
     this.setData({ showPopup: false });
+    if (!this.data.needUpdate) {
+      return false
+    }
+    if (this.data.tabIndex === 0) {
+      this.getSingleTests(true)
+    } else {
+      this.getSingleTests(false)
+    }
   },
   onCheckAnwser (data) {
-    console.log(data)
     let { changeRadioflg, radio } = data.detail
     this.setData({
       changeAnswerFlag: changeRadioflg,
@@ -89,6 +112,9 @@ Page({
       testId: this.data.currentSingleTest.id,
       answer:this.data.answer,
     }
+    this.setData({
+      needUpdate: true
+    })
     if (type === 'next') {
       userSingleTestsSaveOrUpdate(params,this.setNextData)
     } else {

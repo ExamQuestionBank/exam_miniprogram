@@ -1,0 +1,66 @@
+.mine{
+  display: flex;
+}
+
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 130px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding-top: 15px;
+  margin-bottom: 8px;
+  box-shadow: -2px  0px  10px  2px rgba(0, 0, 0, 0.05);
+}
+
+.avatar{
+  text-align: center;
+  width: 100%;
+}
+
+.avatar-button{
+  background: none;
+  border:none;
+  line-height: normal;
+}
+.avatar-button::after{
+  border:none
+}
+
+.avatar-img{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.avatar-unsing{
+  height: 80px;
+  width: 80px;
+}
+
+.name{
+  margin-top: 5px;
+  color: darkgrey;
+  font-size: large;
+}
+
+.name-unsing{
+  margin-top: 5px;
+  color: darkgrey;
+  font-size: 12px;
+}
+
+.content{
+  width: 100%;
+  margin-right: 10px;
+  margin-left: 10px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  box-shadow: -2px  0px  10px  2px rgba(0, 0, 0, 0.05);
+}

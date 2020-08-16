@@ -1,18 +1,24 @@
 <!--logs.wxml-->
-<view class="container question">
-  <view class="search">
-    <van-search value="{{ value }}" placeholder="请输入搜索关键词" shape="round" />
-  </view>
+<view class="container single-test">
+  <van-tabs class="tab" active="{{ active }}" bind:change="onChangeTab" color="#CCBE97">
+    <van-tab title="未练习"/>
+    <van-tab title="已练习" />
+  </van-tabs>
   <view class="scroll">
+    <van-loading wx:if="{{loading}}" class="loading" type="spinner" />
     <scroll-view
+      wx:if="{{!loading}}"
       scroll-y="true"
       bindscrolltoupper="upper"
       bindscrolltolower="lower"
       bindscroll="scroll"
-      style="height: 500px">
+      style="height:95%">
+        <view wx:if="{{singleTests.length < 1}}">
+          <van-empty description="暂无数据哦" />
+        </view>
         <view 
           wx:for="{{ singleTests }}"
-          wx:key="{{item.id}}"
+          wx:key="id"
           class="scroll-view-item"
           data-item="{{item}}"
           data-index="{{index}}"
@@ -44,7 +50,7 @@
       round
       show="{{ showPopup }}"
       bind:close="onClose"
-      custom-style="height: 80%;width:80%"
+      custom-style="height: 88%;width:85%"
       overlay-style="background-color: rgba(0,0,0,0.3);"
       close-icon="close"
     >

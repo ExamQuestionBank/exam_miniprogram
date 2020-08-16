@@ -1,4 +1,84 @@
 <!--logs.wxml-->
 <view class="container mine">
-  Mine
+  <view class="header">
+    <view class="avatar">
+      <image
+        wx-if="{{userInfo !== null}}"
+        class="avatar-img"
+        src="{{userInfo.avatarUrl}}"
+      />
+      <button
+        wx-if="{{userInfo === null}}"
+        class="avatar-button"
+        open-type="getUserInfo"
+        bindgetuserinfo="userInfoHandler">
+        <image
+          class="avatar-unsing"
+          src="../../static/icon/unsing.svg"
+        />
+      </button>
+    </view>
+    <view class="name-unsing" wx-if="{{userInfo === null}}">
+      <text wx-if="{{userInfo !== null}}">{{userInfo.nickName}}</text>
+      <text>未登录，请点击头像登录</text>
+    </view>
+    <view class="name" wx-if="{{userInfo !== null}}">
+      <text >{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class="content">
+    <van-cell title="个人设置" is-link>
+      <van-icon
+        slot="icon"
+        name="setting-o"
+        color="#C8B68D"
+        size="18px"
+        style="margin-right:8px"
+      />
+    </van-cell>
+    <van-cell title="意见反馈" is-link>
+      <van-icon
+        slot="icon"
+        name="comment-circle-o"
+        color="#C8B68D"
+        size="18px"
+        style="margin-right:8px"
+      />
+    </van-cell>
+    <van-cell title="分享有礼" is-link>
+      <van-icon
+        slot="icon"
+        name="point-gift-o"
+        color="#C8B68D"
+        size="18px"
+        style="margin-right:8px"
+      />
+    </van-cell>
+    <van-cell title="关于我们" is-link>
+      <van-icon
+        slot="icon"
+        name="manager-o"
+        color="#C8B68D"
+        size="18px"
+        style="margin-right:8px"
+      />
+    </van-cell><van-cell title="赞赏支持" is-link>
+      <van-icon
+        slot="icon"
+        name="thumb-circle-o"
+        color="#C8B68D"
+        size="18px"
+        style="margin-right:8px"
+      />
+    </van-cell>
+    <van-cell title="互助群" is-link>
+      <van-icon
+        slot="icon"
+        name="friends-o"
+        color="#C8B68D"
+        size="18px"
+        style="margin-right:8px"
+      />
+    </van-cell>
+  </view>
 </view>
