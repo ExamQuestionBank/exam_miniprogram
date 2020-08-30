@@ -14,10 +14,14 @@ Page({
     loading:false,
     tabIndex:0,
     needUpdate: false,
+    currentPage:1,
+    pageSize:100,
+    total:0,
+    loadAll:false,
   },
   onLoad: function (options) {
     // 页面创建时执行
-    this.getSingleTests()
+    this.getSingleTests(true,false)
   },
   onShow: function () {
     // 页面出现在前台时执行
@@ -56,25 +60,57 @@ Page({
       this.getSingleTests(false)
     }
   },
-  getSingleTests: function (todo=true) {
+  lower: async function () {
+    if (this.data.loadAll) {
+      return false
+    }
+    let {total,singleTests,currentPage} = this.data
+    if (total > singleTests.length) {
+      currentPage = currentPage + 1
+      this.setData({
+        currentPage,
+      })
+    } else {
+      return false
+    }
+    if (this.data.tabIndex === 0) {
+      await this.getSingleTests(true,true)
+    } else {
+      await this.getSingleTests(false,true)
+    }
+  },
+  getSingleTests: function (todo,loadMore) {
     this.setData({loading:true})
     const params = {
-      current: 1,
+      current: this.data.currentPage,
       filter: {},
-      pageSize: 20,
+      pageSize: this.data.pageSize,
       userId: wx.getStorageSync('user').id,
-      todo,
+      todo:todo
     }
-    getSingleTests({params},this.dealSingleTestData)
+    getSingleTests({params},data => this.dealSingleTestData (data, loadMore))
     this.setData({needUpdate:false})
   },
-  dealSingleTestData: function (res) {
+  dealSingleTestData: function (res, loadMore) {
     this.setData({ loading: false })
-    if (res.success) {
+    let singleTests = res.data
+    if (singleTests.length < this.data.pageSize) {
       this.setData({
-        singleTests: res.data
+        loadAll:true
+      })
+    } else {
+      this.setData({
+        loadAll:false
       })
     }
+    if (loadMore && res.success){
+      singleTests = [...this.data.singleTests,...singleTests]
+      console.log(singleTests)
+    }
+    this.setData({
+      singleTests: singleTests,
+      total:res.total
+    })
   },
   showSingleTest(e) {
     let {item,index} = e.currentTarget.dataset
